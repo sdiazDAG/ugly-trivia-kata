@@ -21,11 +21,6 @@ namespace Trivia
             Console.WriteLine("They are player number " + players.Count);
         }
 
-        private int HowManyPlayers()
-        {
-            return players.Count;
-        }
-
         public void Roll(int roll)
         {
             Console.WriteLine(players[currentPlayer].Name + " is the current player");
