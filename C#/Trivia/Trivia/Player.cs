@@ -4,7 +4,7 @@ namespace Trivia
 {
     public class Player
     {
-        private int places = 0;
+        private int places;
 
         public Player(string name)
         {
