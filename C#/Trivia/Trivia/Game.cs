@@ -18,6 +18,18 @@ namespace Trivia
 
         private bool DidPlayerWin() => CurrentPlayer().Purses != 6;
 
+        private void MoveCurrentPlayer(int roll)
+        {
+            CurrentPlayer().Places += roll;
+            if (CurrentPlayer().Places > 11) CurrentPlayer().Places -= 12;
+
+            Console.WriteLine(CurrentPlayer().Name
+                              + "'s new location is "
+                              + CurrentPlayer().Places);
+            Console.WriteLine("The category is " + CurrentCategory());
+            AskQuestion();
+        }
+
         public void Add(string playerName)
         {
             players.Add(new Player(playerName));
@@ -50,38 +62,16 @@ namespace Trivia
             }
         }
 
-        private void MoveCurrentPlayer(int roll)
-        {
-            CurrentPlayer().Places += roll;
-            if (CurrentPlayer().Places > 11) CurrentPlayer().Places -= 12;
-
-            Console.WriteLine(CurrentPlayer().Name
-                              + "'s new location is "
-                              + CurrentPlayer().Places);
-            Console.WriteLine("The category is " + CurrentCategory());
-            AskQuestion();
-        }
-
         private void AskQuestion()
         {
             if (CurrentCategory() == "Pop")
-            {
-                Console.WriteLine(popQuestions.Items.First());
-                popQuestions.Items.RemoveFirst();
-            }
+                popQuestions.AskQuestion();
             if (CurrentCategory() == "Science")
-            {
-                Console.WriteLine(scienceQuestions.Items.First());
-                scienceQuestions.Items.RemoveFirst();
-            }
+                scienceQuestions.AskQuestion();
             if (CurrentCategory() == "Sports")
-            {
-                Console.WriteLine(sportsQuestions.Items.First());
-                sportsQuestions.Items.RemoveFirst();
-            }
-            if (CurrentCategory() != "Rock") return;
-            Console.WriteLine(rockQuestions.Items.First());
-            rockQuestions.Items.RemoveFirst();
+                sportsQuestions.AskQuestion();
+            if (CurrentCategory() == "Rock")
+                rockQuestions.AskQuestion();
         }
 
         private string CurrentCategory()
