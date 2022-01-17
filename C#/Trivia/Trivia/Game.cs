@@ -53,16 +53,12 @@ namespace Trivia
 
         public bool WasCorrectlyAnswered()
         {
-            bool winner;
-            if (CurrentPlayer.InPenaltyBox)
-            {
-                if (CurrentPlayer.IsGettingOutOfPenaltyBox) return CorrectAnswer();
+            if ((!CurrentPlayer.InPenaltyBox) || (CurrentPlayer.IsGettingOutOfPenaltyBox))
+                return CorrectAnswer();
 
-                SetCurrentPlayerIndex();
-                return true;
-            }
+            SetCurrentPlayerIndex();
+            return true;
 
-            return CorrectAnswer();
         }
 
         private void SetCurrentPlayerIndex()

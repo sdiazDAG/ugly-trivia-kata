@@ -4,12 +4,11 @@ namespace Trivia
 {
     public class Player
     {
-        private int Places;
+        private int places = 0;
 
         public Player(string name)
         {
             Name = name;
-            Places = 0;
             InPenaltyBox = false;
             Purses = 0;
             IsGettingOutOfPenaltyBox = false;
@@ -22,7 +21,7 @@ namespace Trivia
 
         public string CurrentCategory()
         {
-            switch (Places)
+            switch (places)
             {
                 case 0:
                 case 4:
@@ -71,12 +70,12 @@ namespace Trivia
 
         private void Move(int roll)
         {
-            Places += roll;
-            if (Places > 11) Places -= 12;
+            places += roll;
+            if (places > 11) places -= 12;
 
             Console.WriteLine(Name
                               + "'s new location is "
-                              + Places);
+                              + places);
             Console.WriteLine("The category is " + CurrentCategory());
         }
     }
