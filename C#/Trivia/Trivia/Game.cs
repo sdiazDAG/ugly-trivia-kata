@@ -56,16 +56,19 @@ namespace Trivia
             bool winner;
             if (CurrentPlayer.InPenaltyBox)
             {
-                if (CurrentPlayer.IsGettingOutOfPenaltyBox)
-                {
-                    return CorrectAnswer();
-                }
+                if (CurrentPlayer.IsGettingOutOfPenaltyBox) return CorrectAnswer();
 
-                currentPlayerIndex++;
-                if (currentPlayerIndex == players.Count) currentPlayerIndex = 0;
+                SetCurrentPlayerIndex();
                 return true;
             }
+
             return CorrectAnswer();
+        }
+
+        private void SetCurrentPlayerIndex()
+        {
+            currentPlayerIndex++;
+            if (currentPlayerIndex == players.Count) currentPlayerIndex = 0;
         }
 
         private bool CorrectAnswer()
@@ -77,8 +80,7 @@ namespace Trivia
                               + CurrentPlayer.Purses
                               + " Gold Coins.");
             var winner = DidPlayerWin;
-            currentPlayerIndex++;
-            if (currentPlayerIndex == players.Count) currentPlayerIndex = 0;
+            SetCurrentPlayerIndex();
             return winner;
         }
 
@@ -87,8 +89,7 @@ namespace Trivia
             Console.WriteLine("Question was incorrectly answered");
             Console.WriteLine(CurrentPlayer.Name + " was sent to the penalty box");
             CurrentPlayer.InPenaltyBox = true;
-            currentPlayerIndex++;
-            if (currentPlayerIndex == players.Count) currentPlayerIndex = 0;
+            SetCurrentPlayerIndex();
             return true;
         }
     }
