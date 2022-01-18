@@ -57,7 +57,7 @@ namespace Trivia
             if (!CurrentPlayer.InPenaltyBox || CurrentPlayer.IsGettingOutOfPenaltyBox)
             {
                 Console.WriteLine("Answer was correct!!!!");
-                CurrentPlayer.Purses++;
+                CurrentPlayer.AddPurse();
                 Console.WriteLine(CurrentPlayer.Name
                                   + " now has "
                                   + CurrentPlayer.Purses

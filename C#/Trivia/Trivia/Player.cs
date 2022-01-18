@@ -68,6 +68,11 @@ namespace Trivia
             return true;
         }
 
+        public void AddPurse()
+        {
+            this.Purses++;
+        }
+
         private void Move(int roll)
         {
             places += roll;
