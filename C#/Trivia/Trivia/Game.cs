@@ -51,32 +51,27 @@ namespace Trivia
             }
         }
 
-        public bool WasCorrectlyAnswered()
+        public bool CorrectAnswer()
         {
+            var winner = true;
             if (!CurrentPlayer.InPenaltyBox || CurrentPlayer.IsGettingOutOfPenaltyBox)
-                return CorrectAnswer();
-
+            {
+                Console.WriteLine("Answer was correct!!!!");
+                CurrentPlayer.Purses++;
+                Console.WriteLine(CurrentPlayer.Name
+                                  + " now has "
+                                  + CurrentPlayer.Purses
+                                  + " Gold Coins.");
+                winner = DidPlayerWin;
+            }
             SetCurrentPlayerIndex();
-            return true;
+            return winner;
         }
 
         private void SetCurrentPlayerIndex()
         {
             currentPlayerIndex++;
             if (currentPlayerIndex == players.Count) currentPlayerIndex = 0;
-        }
-
-        private bool CorrectAnswer()
-        {
-            Console.WriteLine("Answer was correct!!!!");
-            CurrentPlayer.Purses++;
-            Console.WriteLine(CurrentPlayer.Name
-                              + " now has "
-                              + CurrentPlayer.Purses
-                              + " Gold Coins.");
-            var winner = DidPlayerWin;
-            SetCurrentPlayerIndex();
-            return winner;
         }
 
         public bool WrongAnswer()
